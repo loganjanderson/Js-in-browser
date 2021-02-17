@@ -6,35 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-      .activeHeading {
-        color: firebrick;
-        font-size: 2em;
-        cursor: pointer;
+      .hideElement {
+        visibility: hidden;
       }
 
-      .nonactiveHeading {
-        color: cornflowerblue;
-        font-size: 4em;
-        cursor: pointer;
+      .showElement {
+        display: block;
       }
 
     </style>
 </head>
 <body>
-  <div id="mainHeading" class="activeHeading">
-    Hi there
+  <div class="mainHeading showElement">
+    <h1>Hi there</h1>
   </div>
+
+  <div class="subHeading showElement">
+    My Amazing subheading....
+  </div>
+
+  <button onclick="contentToggle()">Toggle content</button>
 </body>
 <script>
-   const heading = document.getElementById('mainHeading');
-   heading.onclick = () => {
-     if (heading.classList.contains('activeHeading')) {
-      heading.classList.remove('activeHeading');
-      heading.classList.add('nonactiveHeading');
-     } else {
-      heading.classList.remove('nonactiveHeading');
-      heading.classList.add('activeHeading');
+
+  const headings = document.querySelectorAll('div');
+
+   function contentToggle() {
+     headings.forEach((heading) => {
+        if (heading.classList.contains('showElement')) {
+          heading.classList.remove('showElement');
+          heading.classList.add('hideElement');
+        } else {
+          heading.classList.remove('hideElement');
+          heading.classList.add('showElement');
+        }
+     })
      }
-     }
+
+     console.log(headings);
+     
+  
 </script>
 </html>
