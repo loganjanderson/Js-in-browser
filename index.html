@@ -1,50 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-      .hideElement {
-        visibility: hidden;
-      }
-
-      .showElement {
-        display: block;
-      }
-
-    </style>
+  <meta charset='UTF-8'>
+  <title></title>
 </head>
+
+<style>
+  img {
+    width: 400px;
+  }
+  .container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  .show-img-overlay {
+    position: relative;
+    bottom: 60px;
+    font-size: 21px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .hide-img-overlay {
+    position: relative;
+    bottom: 60px;
+    font-size: 21px;
+    color: transparent;
+  }
+</style>
 <body>
-  <div class="mainHeading showElement">
-    <h1>Hi there</h1>
+
+  <div class="container">
+    <img src="https://s3.amazonaws.com/bottega-devcamp/browser-js/laptop.jpg" class="site-img" alt="Laptop">
+    <div class="hide-img-overlay">Image Description</div>
   </div>
 
-  <div class="subHeading showElement">
-    My Amazing subheading....
+  <div class="container">
+    <img src="https://s3.amazonaws.com/bottega-devcamp/browser-js/another-laptop.jpg" class="site-img" alt="Laptop">
+    <div class="hide-img-overlay">Some Other Image Description</div>
   </div>
 
-  <button onclick="contentToggle()">Toggle content</button>
 </body>
+
 <script>
+const imgs = document.querySelectorAll('.site-img');
 
-  const headings = document.querySelectorAll('div');
 
-   function contentToggle() {
-     headings.forEach((heading) => {
-        if (heading.classList.contains('showElement')) {
-          heading.classList.remove('showElement');
-          heading.classList.add('hideElement');
-        } else {
-          heading.classList.remove('hideElement');
-          heading.classList.add('showElement');
-        }
-     })
-     }
+imgs.forEach(img => {
+  img.addEventListener('mouseover', (event) => {
+  const captionElement = event.target.parentElement.children[1];
+  captionElement.className = 'show-img-overlay';
+})
+})
 
-     console.log(headings);
-     
-  
+
+imgs.forEach(img => {
+  img.addEventListener('mouseout', (event) => {
+  const captionElement = event.target.parentElement.children[1];
+  captionElement.className = 'hide-img-overlay';
+})
+})
+
 </script>
 </html>
