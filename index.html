@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
   <meta charset='UTF-8'>
   <title></title>
 </head>
 
-<style>
-  .hidden {
-    display: none;
-  }
-</style>
 <body>
 
-  <button id="toggleBtn">Toggle Me</button>
-
-  <div id="mainHeading" class="hidden">
-    Hi there
-  </div>
+  <input type="text" id="searchBar">
 
 </body>
 
 <script>
-const heading = document.getElementById('mainHeading');
-const btn = document.getElementById('toggleBtn');
+  const hotKeys = (e) => {
+    let windowEvent = window.event ? event : e;
 
-btn.addEventListener('click', (e) => {
-  heading.classList.toggle('hidden');
-})
+    if (windowEvent.keyCode === 66 && windowEvent.ctrlKey) {
+      const searchBar = document.querySelector('#searchBar');
+      searchBar.focus();
+    } 
+  }
+
+  document.onkeydown = hotKeys;
 </script>
+
 </html>
